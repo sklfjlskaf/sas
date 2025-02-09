@@ -214,8 +214,8 @@ def handle_photo(message):
 verified_users = set()
 
 # Private channel username (not ID)
-PRIVATE_CHANNEL_USERNAME = "PUBLIC_FEEDBACK1"  # Example: "MyPrivateChannel"
-PRIVATE_CHANNEL_LINK = "https://t.me/+8v4D_mbWslw0MjQ1"  # Replace with actual link
+PRIVATE_CHANNEL_USERNAME = "APNA_BHAI_DILDOS"  # Example: "MyPrivateChannel"
+PRIVATE_CHANNEL_LINK = "https://t.me/APNA_BHAI_DILDOS"  # Replace with actual link
 
 # ✅ Command to verify after joining
 @bot.message_handler(commands=['verify'])
@@ -230,14 +230,14 @@ def verify_user(message):
                 message.chat.id,
                 "✅✨ *𝗩𝗘𝗥𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟!* ✨✅\n\n"
                 "🎉 𝗪𝗲𝗹𝗰𝗼𝗺𝗲! 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗻𝗼𝘄 𝗮 𝗩𝗲𝗿𝗶𝗳𝗶𝗲𝗱 𝗨𝘀𝗲𝗿. 🚀\n"
-                "🔗 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝗰𝗰𝗲𝘀𝘀 `/bgmi` 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀! ⚡"
+                "🔗 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝗰𝗰𝗲𝘀𝘀 /bgmi 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀! ⚡️"
             )
         else:
             bot.send_message(
                 message.chat.id,
                 f"🚨 *𝗩𝗘𝗥𝗜𝗙𝗜𝗖𝗔𝗧𝗜𝗢𝗡 𝗙𝗔𝗜𝗟𝗘𝗗!* 🚨\n\n"
                 f"🔗 [Join our Channel]({PRIVATE_CHANNEL_LINK}) 📩\n"
-                "⚠️ 𝗔𝗳𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝗶𝗻𝗴, 𝗿𝘂𝗻 `/verify` 𝗮𝗴𝗮𝗶𝗻.",
+                "⚠️ 𝗔𝗳𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝗶𝗻𝗴, 𝗿𝘂𝗻 /verify 𝗮𝗴𝗮𝗶𝗻.",
                 parse_mode="Markdown"
             )
     except Exception:
@@ -262,7 +262,7 @@ def bgmi_command(message):
                 message.chat.id,
                 f"🚨 *𝗔𝗖𝗖𝗘𝗦𝗦 𝗗𝗘𝗡𝗜𝗘𝗗!* 🚨\n\n"
                 f"🔗 [Click Here to Rejoin]({PRIVATE_CHANNEL_LINK})\n"
-                "📌 𝗧𝗵𝗲𝗻 𝗿𝘂𝗻 `/verify` 𝗮𝗴𝗮𝗶𝗻 𝘁𝗼 𝗿𝗲𝗴𝗮𝗶𝗻 𝗮𝗰𝗰𝗲𝘀𝘀!",
+                "📌 𝗧𝗵𝗲𝗻 𝗿𝘂𝗻 /verify 𝗮𝗴𝗮𝗶𝗻 𝘁𝗼 𝗿𝗲𝗴𝗮𝗶𝗻 𝗮𝗰𝗰𝗲𝘀𝘀!",
                 parse_mode="Markdown"
             )
             return
@@ -278,7 +278,7 @@ def bgmi_command(message):
     bot.send_message(
         message.chat.id,
         "✅ *𝗩𝗘𝗥𝗜𝗙𝗜𝗘𝗗!* 🎉\n"
-        "🚀 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗮 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗹𝗶𝘁𝗲! 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗻𝗴 `/bgmi`... 🔥"
+        "🚀 𝗬𝗼𝘂 𝗮𝗿𝗲 𝗮 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗹𝗶𝘁𝗲! 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗻𝗴 /bgmi... 🔥"
     )
 
 
